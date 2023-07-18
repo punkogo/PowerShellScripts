@@ -2,7 +2,6 @@
 $isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 if (-not $isAdmin) {
     Write-Host "Please run this script with administrative privileges."
-    Exit
 }
 
 # Check if the PSWindowsUpdate module is installed
@@ -22,7 +21,6 @@ $updates = Get-WindowsUpdate -MicrosoftUpdate
 
 if ($updates.Count -eq 0) {
     Write-Host "No updates available."
-    Exit
 }
 
 # Install updates
@@ -40,5 +38,5 @@ if ($failedUpdates.Count -gt 0) {
     Write-Host "All updates installed successfully."
 }
 
-#To Run the following ps1 script please run 
-#
+#To Run the following ps1 script please run: 
+# Invoke-Expression $((Invoke-WebRequest https://raw.githubusercontent.com/punkogo/PowerShellScripts/main/UpdateWindows.ps1).Content)
