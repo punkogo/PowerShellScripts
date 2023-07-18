@@ -4,11 +4,14 @@ if (-not $isAdmin) {
     Write-Host "Please run this script with administrative privileges."
 }
 
+Set-ExecutionPolicy RemoteSigned
+
 # Check if the PSWindowsUpdate module is installed
 $module = Get-Module -Name PSWindowsUpdate -ListAvailable
 if (-not $module) {
     # Install the PSWindowsUpdate module
     Write-Host "Installing the PSWindowsUpdate module..."
+    Import-Module PowerShellGet
     Install-Module -Name PSWindowsUpdate -Force -Confirm:$false
 }
 
